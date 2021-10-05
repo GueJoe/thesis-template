@@ -79,6 +79,11 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{lscape}
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
 
 %more options with enum items
 \usepackage{enumitem}
@@ -86,7 +91,7 @@
 %figures
 \usepackage{graphicx}
 %image path
-\graphicspath{{images/}}
+\graphicspath{{figures/}}
 
 %acronyms
 \usepackage[printonlyused]{acronym} % falls gewünscht kann die Option footnote eingefügt werden, dann wird die Erklärung nicht inline sondern in einer Fußnote dargestellt
