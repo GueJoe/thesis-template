@@ -121,17 +121,93 @@
 % thats why biblatex with biber isn't used
 % use bibtex instead
 
-% configure your listings style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% configure your listings style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
-\lstset{
-	tabsize=3,
-	extendedchars=true,
-	frame=single,
-	showstringspaces=true,
-	numbers=left,
-	numberstyle=\small,
-	breakautoindent=true
+
+%%%%%%%%%%%%%%%%%%java settings (default setting)%%%%%%%%%%%%%%%%%%%%%%
+\lstset{%
+	language=Java,			% default programming language
+	numbers=left,			% line numbers left
+	stepnumber=1,			% every line is numbered
+	numbersep=5pt,			% space beetween line numbers and programm language
+	numberstyle=\tiny,		% number style
+	breaklines=true,		% line breaking possible
+	breakautoindent=true,	% indent after line break
+	postbreak=\space,		% space is line break
+	tabsize=2,				% tabsize
+	basicstyle=\ttfamily\footnotesize, %Monospaced, small font
+	showspaces=false,		% show spaces
+	showstringspaces=false,	% show spaces in strings 
+	extendedchars=true,		% show all characters from the character set Latin1
+	captionpos=b,			% sets the caption-position to bottom
+	backgroundcolor=\color{ListingBackground}, % background for listing
+	xleftmargin=0pt,		 
+	xrightmargin=0pt,		
+	frame=single,			% frame on
+	frameround=ffff,
+	rulecolor=\color{darkgray},	% colour of the frame
+	fillcolor=\color{ListingBackground},
+	keywordstyle=\color{keywords},
+	commentstyle=\color{comments},
+	stringstyle=\color{strings},
+	keywordsprefix = {@}
 }
+%%%%%%%%%%%%%%%%%%java settings%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%yaml as language%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+\newcommand\YAMLkeystyle{\color{black}\small}
+\newcommand\YAMLvaluestyle{\color{black}\footnotesize}
+
+\makeatletter
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+	keywords={true,false,null,y,n},
+	keywordstyle=\color{darkgray}\bfseries,
+	basicstyle=\YAMLkeystyle, % assuming a key comes first
+	sensitive=false,
+	comment=[l]{\#},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple},
+	stringstyle=\YAMLvaluestyle\ttfamily,
+	moredelim=[l][\color{orange}]{\&},
+	moredelim=[l][\color{magenta}]{*},
+	moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+	morestring=[b]',
+	morestring=[b]",
+	literate =    {---}{{\ProcessThreeDashes}}3
+	{>}{{\textcolor{red}\textgreater}}1     
+	{|}{{\textcolor{red}\textbar}}1 
+	{\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
+%%%%%%%%%%%%%%%%%%yaml as language%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%Groovy as language%%%%%%%%%%%%%%%%%%%%
+
+\lstdefinelanguage{Groovy}[]{Java}{
+	keywordstyle=\color{keywords},
+	stringstyle=\color{strings},
+	commentstyle=\color{comments}
+	keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
+	morekeywords={def, as, in, use},
+	moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
+	moredelim=[il][\textcolor{darkgray}]{§§}
+}
+%%%%%%%%%%%%%%%%%%Groovy as language%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% configure your listings style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
