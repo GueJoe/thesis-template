@@ -44,6 +44,20 @@
 \RedeclareSectionCommand[tocindent=0pt]{subsection}
 %\RedeclareSectionCommand[tocnumwidth=70pt]{chapter}
 
+
+%% Farben (Angabe in HTML-Notation mit großen Buchstaben)
+
+\usepackage{xcolor} 	% für HTML-Notation
+
+\definecolor{LinkColor}{HTML}{00007A}
+\definecolor{ListingBackground}{HTML}{FAFAFA}
+\definecolor{keywords}{rgb}{0.133,0.133,0.6}
+\definecolor{comments}{HTML}{848484}
+\definecolor{strings}{rgb}{0.133,0.545,0.133}
+\colorlet{punct}{red!60!black}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
 \usepackage{scrhack}
 
 % other packages
@@ -66,6 +80,9 @@
 \usepackage{ragged2e}
 \usepackage{lscape}
 
+%acronyms
+\usepackage[printonlyused]{acronym} % falls gewünscht kann die Option footnote eingefügt werden, dann wird die Erklärung nicht inline sondern in einer Fußnote dargestellt
+
 % pdf hyperref
 \usepackage[
     bookmarks=true,
@@ -74,29 +91,27 @@
     bookmarksopenlevel=1,
     pdftitle={\titel},
     pdfauthor={\autor},
-    pdfcreator={\autor},
+    pdfcreator={pdflatex},
     pdfsubject={\titel},
     pdfkeywords={\keywords},
+    pdflang=German,
     pdfpagelabels=true,
     colorlinks=true,
-    linkcolor=red,
-    urlcolor=magenta,
-    anchorcolor=black,
-    citecolor=cyan,
-    filecolor=magenta,
-    menucolor=red,
+	linkcolor=LinkColor, 	% Farbe festlegen
+	citecolor=LinkColor,
+	filecolor=LinkColor,
+	menucolor=LinkColor,
+	urlcolor=LinkColor,
     plainpages=false,
     hypertexnames=true,
     linktocpage=true,
 ]{hyperref}
-
 
 % biblatex setup
 % this template uses a custom citation style (wmaainf.bst)
 % such a file is not compatible with biblatex and biber 
 % thats why biblatex with biber isn't used
 % use bibtex instead
-
 
 % configure your listings style
 \usepackage{listings}
@@ -182,5 +197,8 @@
 \bibliography{refs}
 
 \printnoidxglossaries
+
+%acronyms
+\input{acronym}
 
 \end{document}
