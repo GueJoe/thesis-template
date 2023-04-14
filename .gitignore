@@ -10,5 +10,7 @@
 *.run.xml
 *.out
 *.gz
+*.fdb_latexmk
+*.fls
 
 *.pdf
